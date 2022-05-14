@@ -119,9 +119,10 @@ text("Pontinhos: "+pontua,450,30)
 
 if (estadoDeJogo==="iniciando") {
   pontua=pontua+Math.round(frameRate()/60)
-  if (keyDown("space") && trex.y > 100) {
+  if ((keyDown("space") || touches.length>0 ) && trex.y > 100) {
     trex.velocityY=-10
-    somMario.play()     
+    somMario.play() 
+    touches=[]    
   }
   trex.velocityY=trex.velocityY+0.5
   chao.velocityX = -(2+3*pontua/100)
@@ -145,8 +146,9 @@ novaOportunidadeDeMorrer.visible = true
   grupoNuvem.setVelocityXEach(0)
   grupoCacto.setLifetimeEach(-1)
   grupoNuvem.setLifetimeEach(-1)
-  if(mousePressedOver(novaOportunidadeDeMorrer)){
+  if(mousePressedOver(novaOportunidadeDeMorrer)|| touches.length>0){
   reiniciar()
+  touches=[]
   }
 
 }
